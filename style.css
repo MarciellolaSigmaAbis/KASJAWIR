@@ -143,3 +143,25 @@ body {
     font-size: 13px;
     padding: 10px 0;
 }
+/* --- TAMBAHAN UNTUK TOMBOL HAPUS --- */
+.history-amount {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-delete {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #d9363e;
+}
