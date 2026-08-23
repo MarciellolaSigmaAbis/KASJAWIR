@@ -1,12 +1,12 @@
-// Import Firebase Realtime Database langsung via CDN
+// Tambahan: kita meng-import fitur "remove" dari Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
 
 // =========================================================
-// GANTI BAGIAN INI DENGAN FIREBASE CONFIG MILIKMU
+// PASTE FIREBASE CONFIG KAMU DI SINI LAGI
 // =========================================================
 const firebaseConfig = {
-    apiKey: "AIzaSyCdcWq_LFYTGE1tiyEqXsfOwTZJg3m27gk",
+   apiKey: "AIzaSyCdcWq_LFYTGE1tiyEqXsfOwTZJg3m27gk",
   authDomain: "kas-villa-jawir-de05b.firebaseapp.com",
   databaseURL: "https://kas-villa-jawir-de05b-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kas-villa-jawir-de05b",
@@ -14,12 +14,11 @@ const firebaseConfig = {
   messagingSenderId: "943097856108",
   appId: "1:943097856108:web:f037ae8890a9fe47d19849"
 };
-// Inisialisasi Firebase
+
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 const dbRef = ref(database, 'kas_villa');
 
-// Utility: Format Angka ke Rupiah
 const formatRupiah = (angka) => {
     return new Intl.NumberFormat('id-ID', {
         style: 'currency',
@@ -28,7 +27,6 @@ const formatRupiah = (angka) => {
     }).format(angka);
 };
 
-// Class Pengelola Tampilan (UI)
 class UIController {
     constructor() {
         this.balanceEl = document.getElementById('total-balance');
@@ -50,10 +48,10 @@ class UIController {
             return;
         }
 
-        // Urutkan transaksi dari yang paling baru
-        const trxList = Object.values(transactions).reverse();
+        // Object.entries digunakan agar kita mendapatkan "Kunci Unik" dari Firebase beserta Datanya
+        const trxList = Object.entries(transactions).reverse();
 
-        trxList.forEach(trx => {
+        trxList.forEach(([key, trx]) => {
             const div = document.createElement('div');
             div.className = 'history-item';
             div.innerHTML = `
@@ -63,6 +61,8 @@ class UIController {
                 </div>
                 <div class="history-amount">
                     + ${formatRupiah(trx.amount)}
+                    <!-- Tombol hapus yang menyimpan Kunci Unik Firebase -->
+                    <button class="btn-delete" data-key="${key}">Batal</button>
                 </div>
             `;
             this.historyEl.appendChild(div);
@@ -75,15 +75,15 @@ class UIController {
     }
 }
 
-// Class Utama Aplikasi
 class App {
     constructor(ui) {
         this.ui = ui;
 
-        // Listener saat tombol Catat Setoran diklik
         this.ui.formEl.addEventListener('submit', (e) => this.handleSubmit(e));
+        
+        // Listener baru untuk menangkap klik pada tombol hapus
+        this.ui.historyEl.addEventListener('click', (e) => this.handleDelete(e));
 
-        // Listener Realtime Firebase (Otomatis update di semua device)
         onValue(dbRef, (snapshot) => {
             const data = snapshot.val() || {};
             this.updateApp(data);
@@ -100,15 +100,23 @@ class App {
                 name: name,
                 amount: amount,
                 date: new Date().toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
+                    day: 'numeric', month: 'short', year: 'numeric'
                 })
             };
-
-            // Simpan ke database online Firebase
             push(dbRef, newTrx);
             this.ui.clearForm();
+        }
+    }
+
+    // Fungsi Logika untuk Menghapus Data di Firebase
+    handleDelete(e) {
+        if (e.target.classList.contains('btn-delete')) {
+            const konfirmasi = confirm('Yakin mau menghapus setoran ini?');
+            if (konfirmasi) {
+                const key = e.target.getAttribute('data-key'); // Ambil kunci unik
+                const itemRef = ref(database, 'kas_villa/' + key); // Cari lokasinya di Firebase
+                remove(itemRef); // Hapus datanya!
+            }
         }
     }
 
@@ -121,6 +129,5 @@ class App {
     }
 }
 
-// Jalankan Aplikasi
 const ui = new UIController();
 const app = new App(ui);
