@@ -4,17 +4,17 @@ import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com
 // ==========================================
 // 1. SETTING PASSWORD ADMIN & FIREBASE
 // ==========================================
-const ADMIN_USER = "marcel";     // <-- Ubah Username Sesukamu
-const ADMIN_PASS = "admin123"; // <-- Ubah Password Sesukamu
+const ADMIN_USER = "JAWIR";     // <-- Ubah Username Sesukamu
+const ADMIN_PASS = "GAYGAY"; // <-- Ubah Password Sesukamu
 
 const firebaseConfig = {
-    apiKey: "PASTE_API_KEY_DI_SINI",
-    authDomain: "PROJECT_KAMU.firebaseapp.com",
-    databaseURL: "https://PROJECT_KAMU-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "PROJECT_KAMU",
-    storageBucket: "PROJECT_KAMU.appspot.com",
-    messagingSenderId: "SENDER_ID_KAMU",
-    appId: "APP_ID_KAMU"
+  apiKey: "AIzaSyCdcWq_LFYTGE1tiyEqXsfOwTZJg3m27gk",
+  authDomain: "kas-villa-jawir-de05b.firebaseapp.com",
+  databaseURL: "https://kas-villa-jawir-de05b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "kas-villa-jawir-de05b",
+  storageBucket: "kas-villa-jawir-de05b.firebasestorage.app",
+  messagingSenderId: "943097856108",
+  appId: "1:943097856108:web:f037ae8890a9fe47d19849"
 };
 
 const appFb = initializeApp(firebaseConfig);
