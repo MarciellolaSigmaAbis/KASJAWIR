@@ -36,8 +36,17 @@ body {
     width: 100%; background-color: #e0e0e0; color: #333; border: none; padding: 14px;
     border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
 }
+/* Tombol Admin Menyatu dengan Background (Kamuflase) */
 .btn-text {
-    background: none; border: none; color: #888; font-size: 12px; text-decoration: underline; cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #f5f5f9; /* Warna disamakan persis dengan warna background aplikasi */
+    font-size: 12px;
+    text-decoration: none;
+    cursor: default; /* Kursor tidak berubah jadi jari telunjuk biar gak dicurigai */
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Hilangkan efek bayangan biru pas diklik di HP */
+    user-select: none; /* Biar teksnya gak bisa di-blok/highlight */
 }
 
 /* History List */
