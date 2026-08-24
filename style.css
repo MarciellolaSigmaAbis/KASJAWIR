@@ -1,167 +1,63 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif;
 }
-
 body {
-    background-color: #f5f5f9;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    background-color: #f5f5f9; display: flex; justify-content: center; min-height: 100vh;
 }
-
 .app-container {
-    width: 100%;
-    max-width: 480px;
-    background-color: #f5f5f9;
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 30px;
+    width: 100%; max-width: 480px; background-color: #f5f5f9; min-height: 100vh; padding-bottom: 30px;
 }
-
-/* Header Tampilan ala DANA */
 .dana-header {
     background: linear-gradient(135deg, #118ee9 0%, #0c75c5 100%);
-    color: #ffffff;
-    padding: 40px 20px 80px 20px;
-    text-align: center;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    color: #ffffff; padding: 40px 20px 80px 20px; text-align: center;
+    border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
 }
-
-.dana-header p {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 8px;
-}
-
-.dana-header h1 {
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-/* Kartu Overlap */
-.content {
-    padding: 0 20px;
-    margin-top: -40px;
-}
-
+.dana-header p { font-size: 14px; opacity: 0.9; margin-bottom: 8px; }
+.dana-header h1 { font-size: 36px; font-weight: 700; }
+.content { padding: 0 20px; margin-top: -40px; }
 .card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
+    background: #ffffff; border-radius: 16px; padding: 20px; margin-bottom: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
+.card h3 { font-size: 16px; color: #333; margin-bottom: 16px; }
 
-.card h3 {
-    font-size: 16px;
-    color: #333333;
-    margin-bottom: 16px;
-}
-
-/* Form Styling */
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 12px;
-    color: #666666;
-    margin-bottom: 6px;
-}
-
+/* Input & Button */
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 12px; color: #666; margin-bottom: 6px; }
 .input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.3s;
+    width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; outline: none;
 }
-
-.input-group input:focus {
-    border-color: #118ee9;
-}
-
+.input-group input:focus { border-color: #118ee9; }
 .btn-primary {
-    width: 100%;
-    background-color: #118ee9;
-    color: #ffffff;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s;
+    width: 100%; background-color: #118ee9; color: #fff; border: none; padding: 14px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.btn-secondary {
+    width: 100%; background-color: #e0e0e0; color: #333; border: none; padding: 14px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.btn-text {
+    background: none; border: none; color: #888; font-size: 12px; text-decoration: underline; cursor: pointer;
 }
 
-.btn-primary:hover {
-    background-color: #0c75c5;
-}
+/* History List */
+.history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+.history-info strong { color: #333; font-size: 14px; display: block; }
+.history-info small { color: #888; font-size: 11px; }
+.history-right { display: flex; align-items: center; }
+.history-amount { color: #00aa5b; font-weight: 600; font-size: 14px; }
+.history-amount.negative { color: #ff4d4f; }
+.btn-delete { background-color: #ff4d4f; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-left: 10px; }
+.empty-state { text-align: center; color: #888; font-size: 13px; padding: 10px 0; }
 
-/* Riwayat Transaksi */
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
+/* Utility */
+.hidden { display: none !important; }
 
-.history-item:last-child {
-    border-bottom: none;
+/* Modal Pop-up */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center; z-index: 100;
 }
-
-.history-info strong {
-    color: #333333;
-    font-size: 14px;
-    display: block;
-}
-
-.history-info small {
-    color: #888888;
-    font-size: 11px;
-}
-
-.history-amount {
-    color: #00aa5b;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.empty-state {
-    text-align: center;
-    color: #888888;
-    font-size: 13px;
-    padding: 10px 0;
-}
-/* --- TAMBAHAN UNTUK TOMBOL HAPUS --- */
-.history-amount {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.btn-delete {
-    background-color: #ff4d4f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-delete:hover {
-    background-color: #d9363e;
+.modal-card {
+    background: #fff; padding: 25px; border-radius: 16px; width: 90%; max-width: 350px;
 }
