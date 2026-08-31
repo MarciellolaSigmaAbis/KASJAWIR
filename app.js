@@ -4,11 +4,11 @@ import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com
 // ==========================================
 // 1. SETTING PASSWORD ADMIN & FIREBASE
 // ==========================================
-const ADMIN_USER = "marcel";     // Username Admin
-const ADMIN_PASS = "admin123"; // Password Admin
+const ADMIN_USER = "aceng";     // Username Admin
+const ADMIN_PASS = "GAYGAY"; // Password Admin
 
 const firebaseConfig = {
-     apiKey: "AIzaSyCdcWq_LFYTGE1tiyEqXsfOwTZJg3m27gk",
+ apiKey: "AIzaSyCdcWq_LFYTGE1tiyEqXsfOwTZJg3m27gk",
   authDomain: "kas-villa-jawir-de05b.firebaseapp.com",
   databaseURL: "https://kas-villa-jawir-de05b-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kas-villa-jawir-de05b",
@@ -16,7 +16,6 @@ const firebaseConfig = {
   messagingSenderId: "943097856108",
   appId: "1:943097856108:web:f037ae8890a9fe47d19849"
 };
-
 
 const appFb = initializeApp(firebaseConfig);
 const database = getDatabase(appFb);
