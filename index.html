@@ -3,74 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabungan Villa 🌴</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
-    <!-- Mengambil alat pembuat grafik otomatis (Chart.js) -->
+    <title>Data Uang ke Bandung 🌴</title>
+    <!-- Font Minimalis Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
+    <!-- Library Chart.js untuk Admin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    
+
     <!-- HALAMAN UTAMA -->
-    <div class="app-container" id="main-page">
-        <header class="dana-header">
-            <p>Total Tabungan Villa</p>
-            <h1 id="total-balance">Rp 0</h1>
+    <div class="main-wrapper" id="main-page">
+        
+        <!-- TOP BAR: Logo & Display Saldo -->
+        <header class="top-bar">
+            <div class="logo-box">
+                <!-- Kamu bisa ganti teks LOGO ini pakai <img> kalau punya file gambar logo -->
+                <span>LOGO</span>
+            </div>
+            
+            <div class="balance-display-card">
+                <span class="balance-label">Total Tabungan</span>
+                <h1 id="total-balance" class="balance-amount">Rp 0</h1>
+            </div>
         </header>
 
-        <main class="content">
-            <section class="card input-section">
-                <h3>Tambah Tabungan</h3>
-                <form id="savings-form">
-                    <div class="input-group">
-                        <label>Nama Penyetor</label>
-                        <input type="text" id="name-input" placeholder="Contoh: Marcel" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Jumlah Setoran (Rp)</label>
-                        <input type="number" id="amount-input" placeholder="Contoh: 50000" min="1" required>
-                    </div>
-                    <button type="submit" class="btn-primary">Catat Setoran</button>
-                </form>
-            </section>
+        <!-- KONTEN UTAMA LAYOUT SKETSA -->
+        <main class="grid-container">
+            <!-- Bagian Kiri: Judul Utama -->
+            <div class="title-section">
+                <h1 class="main-title">
+                    <span class="font-kugile">Data</span><br>
+                    <span class="font-transity">uang<br>ke Bandung</span>
+                </h1>
+            </div>
 
-            <section class="card history-section">
-                <h3>Riwayat Setoran</h3>
-                <div id="history-list" class="history-list"></div>
-            </section>
+            <!-- Bagian Tengah: Tombol Masukan Nominal -->
+            <div class="center-action-section">
+                <button id="btn-open-input" class="bubble-input-btn">
+                    <span>Masukan<br>nominal</span>
+                </button>
+            </div>
 
-            <!-- Tombol Rahasia Admin -->
-            <div style="text-align: center; margin-top: 15px;">
-                <button id="btn-show-login" class="btn-text">Admin Dashboard</button>
+            <!-- Bagian Bawah Kanan: Container Riwayat Setoran -->
+            <div class="history-section-card">
+                <h3 class="card-title">Riwayat Setoran</h3>
+                <div id="history-list" class="history-scroll-list">
+                    <p class="empty-state">Memuat data setoran...</p>
+                </div>
             </div>
         </main>
+
+        <!-- FOOTER & CREDIT -->
+        <footer class="footer-bar">
+            <!-- Secret Trigger Admin di Pojok Kiri Bawah -->
+            <button id="btn-secret-admin" class="secret-admin-btn" title="Admin Trigger"></button>
+            
+            <!-- Credit Teks -->
+            <p class="credit-text">Credit by <strong>JawitStory</strong></p>
+        </footer>
     </div>
 
-    <!-- HALAMAN ADMIN (TERSEMBUNYI) -->
-    <div class="app-container hidden" id="admin-page">
-        <header class="dana-header" style="background: linear-gradient(135deg, #333 0%, #111 100%); padding-bottom: 60px;">
-            <p>.</p>
-            <h1 style="font-size: 24px;">Statistik Bulanan</h1>
-        </header>
-
-        <main class="content">
-            <!-- Tempat Grafik Chart.js -->
-            <section class="card">
-                <h3>Grafik Pemasukan Harian</h3>
-                <canvas id="myChart"></canvas>
-            </section>
-
-            <!-- Log Uang Dihapus -->
-            <section class="card history-section">
-                <h3 style="color: #ff4d4f;">Riwayat Uang Dihapus (Batal)</h3>
-                <div id="trash-list" class="history-list"></div>
-            </section>
-
-            <button id="btn-close-admin" class="btn-primary" style="background: #333;">Kembali ke Halaman Utama</button>
-        </main>
+    <!-- POP-UP MODAL INPUT NOMINAL (MUNCUL PAS TOMBOL DITEKAN) -->
+    <div id="input-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h3>Setor Tabungan</h3>
+            <form id="savings-form">
+                <div class="input-group">
+                    <label for="name-input">Nama Penyetor</label>
+                    <input type="text" id="name-input" placeholder="Contoh: Marcel" required>
+                </div>
+                <div class="input-group">
+                    <label for="amount-input">Jumlah Nominal (Rp)</label>
+                    <input type="number" id="amount-input" placeholder="Contoh: 50000" min="1" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-close-input" class="btn-secondary">Batal</button>
+                    <button type="submit" class="btn-primary">Catat Setoran</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- POP-UP LOGIN ADMIN -->
+    <!-- POP-UP MODAL LOGIN ADMIN -->
     <div id="login-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <h3>Login Admin</h3>
@@ -80,14 +95,36 @@
             <div class="input-group">
                 <input type="password" id="admin-pass" placeholder="Password">
             </div>
-            <p id="login-error" style="color: red; font-size: 12px; display: none;">Username atau Password salah!</p>
-            <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <p id="login-error" class="error-msg hidden">Username atau Password salah!</p>
+            <div class="modal-actions">
                 <button id="btn-cancel-login" class="btn-secondary">Batal</button>
                 <button id="btn-login" class="btn-primary">Masuk</button>
             </div>
         </div>
     </div>
 
-    <script type="module" src="app.js?v=3"></script>
+    <!-- HALAMAN DASHBOARD ADMIN (TERSEMBUNYI) -->
+    <div class="main-wrapper hidden" id="admin-page">
+        <header class="top-bar">
+            <div>
+                <h2>Dashboard Admin</h2>
+                <small style="color: #666;">Statistik & Log Penghapusan</small>
+            </div>
+            <button id="btn-close-admin" class="btn-secondary" style="width: auto; padding: 10px 20px;">Kembali</button>
+        </header>
+
+        <main class="admin-grid">
+            <div class="admin-card">
+                <h3>Grafik Pemasukan Harian</h3>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="admin-card">
+                <h3 style="color: #ff4d4f;">Log Pembatalan / Uang Dihapus</h3>
+                <div id="trash-list" class="history-scroll-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js?v=4"></script>
 </body>
 </html>
