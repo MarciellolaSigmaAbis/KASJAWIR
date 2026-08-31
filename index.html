@@ -6,7 +6,7 @@
     <title>Data Uang ke Bandung 🌴</title>
     <!-- Font Minimalis Google Fonts (Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <!-- Library Chart.js untuk Admin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,11 +15,11 @@
     <!-- HALAMAN UTAMA -->
     <div class="main-wrapper" id="main-page">
         
-        <!-- TOP BAR: Logo & Display Saldo -->
+        <!-- TOP BAR: Logo di Kiri, Total Tabungan Tepat di Tengah -->
         <header class="top-bar">
-            <div class="logo-box">
-                <!-- Kamu bisa ganti teks LOGO ini pakai <img> kalau punya file gambar logo -->
-                <span>LOGO</span>
+            <div class="logo-box animated-logo">
+                <!-- Jika ada file logo, ganti teks di bawah dengan: <img src="logo.png" alt="Logo"> -->
+                <img src="logo.png" alt="Logo">
             </div>
             
             <div class="balance-display-card">
@@ -30,7 +30,7 @@
 
         <!-- KONTEN UTAMA LAYOUT SKETSA -->
         <main class="grid-container">
-            <!-- Bagian Kiri: Judul Utama -->
+            <!-- Bagian Kiri: Judul Utama (Digeser sedikit ke kanan & lebih lega) -->
             <div class="title-section">
                 <h1 class="main-title">
                     <span class="font-kugile">Data</span><br>
@@ -45,7 +45,7 @@
                 </button>
             </div>
 
-            <!-- Bagian Bawah Kanan: Container Riwayat Setoran -->
+            <!-- Bagian Bawah Kanan: Container Riwayat Setoran (Diperbesar) -->
             <div class="history-section-card">
                 <h3 class="card-title">Riwayat Setoran</h3>
                 <div id="history-list" class="history-scroll-list">
@@ -56,15 +56,15 @@
 
         <!-- FOOTER & CREDIT -->
         <footer class="footer-bar">
-            <!-- Secret Trigger Admin di Pojok Kiri Bawah -->
-            <button id="btn-secret-admin" class="secret-admin-btn" title="Admin Trigger"></button>
+            <!-- Secret Trigger Admin (Terlihat Tipis Hanya Bagi yang Jeli) -->
+            <button id="btn-secret-admin" class="secret-admin-btn" title="Dashboard Admin"></button>
             
             <!-- Credit Teks -->
-            <p class="credit-text">Credit by <strong>JawitStory</strong></p>
+            <p class="credit-text">Credit by <strong>JawirStory</strong></p>
         </footer>
     </div>
 
-    <!-- POP-UP MODAL INPUT NOMINAL (MUNCUL PAS TOMBOL DITEKAN) -->
+    <!-- POP-UP MODAL INPUT NOMINAL -->
     <div id="input-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <h3>Setor Tabungan</h3>
@@ -105,7 +105,7 @@
 
     <!-- HALAMAN DASHBOARD ADMIN (TERSEMBUNYI) -->
     <div class="main-wrapper hidden" id="admin-page">
-        <header class="top-bar">
+        <header class="top-bar-admin">
             <div>
                 <h2>Dashboard Admin</h2>
                 <small style="color: #666;">Statistik & Log Penghapusan</small>
@@ -125,6 +125,6 @@
         </main>
     </div>
 
-    <script type="module" src="app.js?v=4"></script>
+    <script type="module" src="app.js?v=5"></script>
 </body>
 </html>
