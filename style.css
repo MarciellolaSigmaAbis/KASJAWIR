@@ -1,72 +1,396 @@
-* {
-    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif;
+/* ==========================================
+   1. IMPORT FONT KHUSUS & PENGATURAN DASAR
+   ========================================== */
+@font-face {
+    font-family: 'KugileDemo';
+    src: url('fonts/Kugile_demo.ttf') format('truetype'),
+         url('Kugile_demo.ttf') format('truetype');
 }
-body {
-    background-color: #f5f5f9; display: flex; justify-content: center; min-height: 100vh;
-}
-.app-container {
-    width: 100%; max-width: 480px; background-color: #f5f5f9; min-height: 100vh; padding-bottom: 30px;
-}
-.dana-header {
-    background: linear-gradient(135deg, #118ee9 0%, #0c75c5 100%);
-    color: #ffffff; padding: 40px 20px 80px 20px; text-align: center;
-    border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
-}
-.dana-header p { font-size: 14px; opacity: 0.9; margin-bottom: 8px; }
-.dana-header h1 { font-size: 36px; font-weight: 700; }
-.content { padding: 0 20px; margin-top: -40px; }
-.card {
-    background: #ffffff; border-radius: 16px; padding: 20px; margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-.card h3 { font-size: 16px; color: #333; margin-bottom: 16px; }
 
-/* Input & Button */
-.input-group { margin-bottom: 15px; }
-.input-group label { display: block; font-size: 12px; color: #666; margin-bottom: 6px; }
-.input-group input {
-    width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; outline: none;
+@font-face {
+    font-family: 'TransityDemo';
+    src: url('fonts/transity_demo.ttf') format('truetype'),
+         url('transity_demo.ttf') format('truetype');
 }
-.input-group input:focus { border-color: #118ee9; }
-.btn-primary {
-    width: 100%; background-color: #118ee9; color: #fff; border: none; padding: 14px;
-    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.btn-secondary {
-    width: 100%; background-color: #e0e0e0; color: #333; border: none; padding: 14px;
-    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+
+body {
+    /* Background abstrak gradasi abu-abu / putih minimalis sesuai sketsa */
+    background: linear-gradient(135deg, #eef0f3 0%, #e3e6eb 50%, #f5f6f8 100%);
+    color: #2b303a;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-/* Tombol Admin Menyatu dengan Background (Kamuflase) */
-.btn-text {
+
+/* Container Utama */
+.main-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 90vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Class Pengatur Font */
+.font-kugile {
+    font-family: 'KugileDemo', serif;
+    font-weight: normal;
+}
+
+.font-transity {
+    font-family: 'TransityDemo', sans-serif;
+    font-weight: normal;
+}
+
+/* ==========================================
+   2. HEADER & TOP BAR (LOGO & TABUNGAN)
+   ========================================== */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.logo-box {
+    border: 2px solid #111;
+    padding: 12px 28px;
+    background: transparent;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #ff4d4f; /* Warna merah sesuai petunjuk sketsa */
+}
+
+.balance-display-card {
+    border: 1.5px solid #222;
+    border-radius: 16px;
+    padding: 16px 36px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    min-width: 320px;
+}
+
+.balance-label {
+    font-size: 13px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.balance-amount {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #118ee9;
+}
+
+/* ==========================================
+   3. GRID UTAMA UNTUK TAMPILAN DESKTOP
+   ========================================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 30px;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* Judul Utama Kiri */
+.main-title {
+    font-size: 54px;
+    line-height: 1.1;
+    color: #2b3990;
+}
+
+/* Tombol Bubble Tengah */
+.center-action-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bubble-input-btn {
+    background: #2b3990;
+    color: #5ce1e6;
+    border: 3px solid #1d255c;
+    border-radius: 28px;
+    padding: 18px 36px;
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.bubble-input-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bubble-input-btn:active {
+    transform: translateY(1px);
+}
+
+/* Kartu Riwayat Bawah-Kanan */
+.history-section-card {
+    border: 1.5px solid #222;
+    border-radius: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    max-height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.history-scroll-list {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.history-info strong {
+    font-size: 14px;
+    color: #222;
+    display: block;
+}
+
+.history-info small {
+    font-size: 11px;
+    color: #888;
+}
+
+.history-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-amount {
+    color: #00aa5b;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.btn-delete {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* ==========================================
+   4. FOOTER & SECRET ADMIN TRIGGER
+   ========================================== */
+.footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Tombol Admin Ghaib di Pojok Kiri Bawah */
+.secret-admin-btn {
+    width: 25px;
+    height: 25px;
     background: transparent;
     border: none;
-    color: #f5f5f9; /* Warna disamakan persis dengan warna background aplikasi */
-    font-size: 12px;
-    text-decoration: none;
-    cursor: default; /* Kursor tidak berubah jadi jari telunjuk biar gak dicurigai */
+    cursor: default;
     outline: none;
-    -webkit-tap-highlight-color: transparent; /* Hilangkan efek bayangan biru pas diklik di HP */
-    user-select: none; /* Biar teksnya gak bisa di-blok/highlight */
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* History List */
-.history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
-.history-info strong { color: #333; font-size: 14px; display: block; }
-.history-info small { color: #888; font-size: 11px; }
-.history-right { display: flex; align-items: center; }
-.history-amount { color: #00aa5b; font-weight: 600; font-size: 14px; }
-.history-amount.negative { color: #ff4d4f; }
-.btn-delete { background-color: #ff4d4f; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-left: 10px; }
-.empty-state { text-align: center; color: #888; font-size: 13px; padding: 10px 0; }
+.credit-text {
+    font-size: 12px;
+    color: #777;
+    margin-left: auto; /* Memaksa credit tetap di kanan */
+}
 
-/* Utility */
-.hidden { display: none !important; }
-
-/* Modal Pop-up */
+/* ==========================================
+   5. POP-UP MODAL STYLING
+   ========================================== */
 .modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
-    display: flex; justify-content: center; align-items: center; z-index: 100;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
+
 .modal-card {
-    background: #fff; padding: 25px; border-radius: 16px; width: 90%; max-width: 350px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.modal-card h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #2b2b2b;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #118ee9;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    flex: 1;
+    background: #118ee9;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    flex: 1;
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.error-msg {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Dashboard Admin Layout */
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* ==========================================
+   6. RESPONSIVE MOBILE VIEW (HP & TABLET)
+   ========================================== */
+@media (max-width: 850px) {
+    .main-wrapper {
+        padding: 15px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .balance-display-card {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Tumpuk ke bawah di layar HP */
+        gap: 25px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .main-title {
+        font-size: 42px;
+    }
+
+    .history-section-card {
+        max-height: 300px;
+    }
+
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
 }
