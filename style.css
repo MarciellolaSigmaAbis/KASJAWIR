@@ -1,6 +1,17 @@
 /* ==========================================
-   1. IMPORT FONT KHUSUS & PENGATURAN DASAR
+   1. KOSTUMISASI BACKGROUND & PENGATURAN DASAR
    ========================================== */
+:root {
+    /* 
+       GANTI BACKGROUND KAMU DI SINI:
+       - Pilihan Gambar: url('background.jpg') center/cover no-repeat
+       - Pilihan Gradasi: linear-gradient(135deg, #eef0f3 0%, #e3e6eb 50%, #f5f6f8 100%)
+    */
+    --bg-custom: url('background.jpg') center/cover no-repeat;
+    --primary-blue: #2b3990;
+    --accent-cyan: #5ce1e6;
+}
+
 @font-face {
     font-family: 'KugileDemo';
     src: url('fonts/Kugile_demo.ttf') format('truetype'),
@@ -20,8 +31,7 @@
 }
 
 body {
-    /* Background abstrak gradasi abu-abu / putih minimalis sesuai sketsa */
-    background: linear-gradient(135deg, #eef0f3 0%, #e3e6eb 50%, #f5f6f8 100%);
+    background: var(--bg-custom);
     color: #2b303a;
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
@@ -30,11 +40,11 @@ body {
     align-items: center;
 }
 
-/* Container Utama */
+/* Container Utama Web */
 .main-wrapper {
     width: 100%;
-    max-width: 1100px;
-    min-height: 90vh;
+    max-width: 1200px;
+    min-height: 92vh;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -42,7 +52,6 @@ body {
     position: relative;
 }
 
-/* Class Pengatur Font */
 .font-kugile {
     font-family: 'KugileDemo', serif;
     font-weight: normal;
@@ -54,66 +63,100 @@ body {
 }
 
 /* ==========================================
-   2. HEADER & TOP BAR (LOGO & TABUNGAN)
+   2. TOP BAR: LOGO (KIRI) & SALDO (TENGAH ATAS)
    ========================================== */
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    position: relative;
     width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
+/* Logo di Kiri atas dengan Animasi */
 .logo-box {
+    position: absolute;
+    left: 0;
+    top: 10px;
     border: 2px solid #111;
     padding: 12px 28px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.8);
     font-weight: 700;
     font-size: 18px;
     letter-spacing: 1px;
-    color: #ff4d4f; /* Warna merah sesuai petunjuk sketsa */
+    color: #ff4d4f;
+    border-radius: 8px;
 }
 
+.logo-box img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+/* Animasi Melayang Mulus (Floating) untuk Logo */
+.animated-logo {
+    animation: logoFloat 3.5s ease-in-out infinite, logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes logoGlow {
+    0%, 100% { box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    50% { box-shadow: 0 8px 20px rgba(255, 77, 79, 0.25); }
+}
+
+/* Total Tabungan Tepat di Tengah Atas */
 .balance-display-card {
     border: 1.5px solid #222;
-    border-radius: 16px;
-    padding: 16px 36px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 14px 45px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
     text-align: center;
     min-width: 320px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
 }
 
 .balance-label {
     font-size: 13px;
     color: #666;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .balance-amount {
     font-family: 'Inter', sans-serif;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 800;
     color: #118ee9;
 }
 
 /* ==========================================
-   3. GRID UTAMA UNTUK TAMPILAN DESKTOP
+   3. GRID TATA LETAK UTAMA & LEGA
    ========================================== */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.2fr;
-    gap: 30px;
+    grid-template-columns: 1.1fr 1fr 1.3fr;
+    gap: 40px; /* Jarak dibuat lebih lega */
     align-items: center;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
-/* Judul Utama Kiri */
+/* Judul Kiri (Digeser sedikit ke kanan, tidak numpuk di tengah) */
+.title-section {
+    padding-left: 25px; /* Beri ruang dari tepi kiri agar pas */
+}
+
 .main-title {
-    font-size: 54px;
-    line-height: 1.1;
-    color: #2b3990;
+    font-size: 52px;
+    line-height: 1.15;
+    color: var(--primary-blue);
 }
 
 /* Tombol Bubble Tengah */
@@ -124,62 +167,59 @@ body {
 }
 
 .bubble-input-btn {
-    background: #2b3990;
-    color: #5ce1e6;
+    background: var(--primary-blue);
+    color: var(--accent-cyan);
     border: 3px solid #1d255c;
     border-radius: 28px;
-    padding: 18px 36px;
+    padding: 22px 42px;
     font-size: 24px;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
     transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .bubble-input-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
 }
 
-.bubble-input-btn:active {
-    transform: translateY(1px);
-}
-
-/* Kartu Riwayat Bawah-Kanan */
+/* Kartu Riwayat Setoran (DIPERBESAR) */
 .history-section-card {
     border: 1.5px solid #222;
     border-radius: 20px;
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.85);
+    padding: 26px;
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    max-height: 380px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    min-height: 420px; /* Diperbesar ukurannya */
+    max-height: 460px;
     display: flex;
     flex-direction: column;
 }
 
 .card-title {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e2e2;
 }
 
 .history-scroll-list {
     overflow-y: auto;
     flex-grow: 1;
-    padding-right: 5px;
+    padding-right: 6px;
 }
 
 .history-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .history-info strong {
@@ -196,7 +236,7 @@ body {
 .history-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .history-amount {
@@ -209,7 +249,7 @@ body {
     background-color: #ff4d4f;
     color: white;
     border: none;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 6px;
     font-size: 11px;
     font-weight: 600;
@@ -220,35 +260,41 @@ body {
     text-align: center;
     color: #888;
     font-size: 13px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 /* ==========================================
-   4. FOOTER & SECRET ADMIN TRIGGER
+   4. FOOTER & TOMBOL ADMIN SAMAR (YANG JELI SAJA)
    ========================================== */
 .footer-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    position: relative;
 }
 
-/* Tombol Admin Ghaib di Pojok Kiri Bawah */
+/* Tombol Titik Redup Samar di Pojok Kiri Bawah */
 .secret-admin-btn {
-    width: 25px;
-    height: 25px;
-    background: transparent;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #888888;
     border: none;
-    cursor: default;
+    opacity: 0.15; /* Hanya terlihat jika diperhatikan dengan jeli */
+    cursor: pointer;
+    transition: opacity 0.3s;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+.secret-admin-btn:hover {
+    opacity: 0.5; /* Agak terang saat kursor diarahkan */
 }
 
 .credit-text {
     font-size: 12px;
     color: #777;
-    margin-left: auto; /* Memaksa credit tetap di kanan */
+    margin-left: auto;
 }
 
 /* ==========================================
@@ -257,8 +303,8 @@ body {
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,6 +389,13 @@ body {
 }
 
 /* Dashboard Admin Layout */
+.top-bar-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
 .admin-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -357,17 +410,22 @@ body {
 }
 
 /* ==========================================
-   6. RESPONSIVE MOBILE VIEW (HP & TABLET)
+   6. RESPONSIVE MOBILE VIEW (HP)
    ========================================== */
-@media (max-width: 850px) {
+@media (max-width: 900px) {
     .main-wrapper {
-        padding: 15px;
+        padding: 20px 15px;
     }
 
     .top-bar {
+        height: auto;
         flex-direction: column;
-        align-items: center;
         gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .logo-box {
+        position: static;
     }
 
     .balance-display-card {
@@ -376,10 +434,14 @@ body {
     }
 
     .grid-container {
-        grid-template-columns: 1fr; /* Tumpuk ke bawah di layar HP */
-        gap: 25px;
-        margin: 20px 0;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 10px 0;
         text-align: center;
+    }
+
+    .title-section {
+        padding-left: 0;
     }
 
     .main-title {
@@ -387,7 +449,7 @@ body {
     }
 
     .history-section-card {
-        max-height: 300px;
+        min-height: 350px;
     }
 
     .admin-grid {
