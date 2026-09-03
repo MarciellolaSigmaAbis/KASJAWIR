@@ -3,68 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Uang ke Bandung 🌴</title>
-    <!-- Font Minimalis Google Fonts (Inter) -->
+    <title>Data Uang ke Bandung 🤑</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=5">
-    <!-- Library Chart.js untuk Admin -->
+    <link rel="stylesheet" href="style.css?v=6">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <!-- HALAMAN UTAMA -->
-    <div class="main-wrapper" id="main-page">
+    <div class="main-wrapper-column" id="main-page">
         
-        <!-- TOP BAR: Logo di Kiri, Total Tabungan Tepat di Tengah -->
-        <header class="top-bar">
+        <div class="logo-container">
             <div class="logo-box animated-logo">
-                <!-- Jika ada file logo, ganti teks di bawah dengan: <img src="logo.png" alt="Logo"> -->
-                <img src="logo.png" alt="Logo">
+              <img src="logo.png" alt="Logo">
             </div>
-            
-            <div class="balance-display-card">
+        </div>
+
+        <div class="action-container">
+            <button id="btn-open-input" class="pill-input-btn">
+                <span>MASUKAN NOMINAL</span>
+            </button>
+        </div>
+
+        <div class="title-container">
+            <h1 class="main-title-center">
+                <span class="font-kugile">Data</span> <span class="font-transity">uang ke Bandung</span>
+            </h1>
+        </div>
+
+        <div class="balance-container">
+            <div class="balance-card">
                 <span class="balance-label">Total Tabungan</span>
                 <h1 id="total-balance" class="balance-amount">Rp 0</h1>
             </div>
-        </header>
+        </div>
 
-        <!-- KONTEN UTAMA LAYOUT SKETSA -->
-        <main class="grid-container">
-            <!-- Bagian Kiri: Judul Utama (Digeser sedikit ke kanan & lebih lega) -->
-            <div class="title-section">
-                <h1 class="main-title">
-                    <span class="font-kugile">Data</span><br>
-                    <span class="font-transity">uang<br>ke Bandung</span>
-                </h1>
-            </div>
-
-            <!-- Bagian Tengah: Tombol Masukan Nominal -->
-            <div class="center-action-section">
-                <button id="btn-open-input" class="bubble-input-btn">
-                    <span>Masukan<br>nominal</span>
-                </button>
-            </div>
-
-            <!-- Bagian Bawah Kanan: Container Riwayat Setoran (Diperbesar) -->
-            <div class="history-section-card">
+        <div class="history-container">
+            <div class="history-card-large">
                 <h3 class="card-title">Riwayat Setoran</h3>
                 <div id="history-list" class="history-scroll-list">
                     <p class="empty-state">Memuat data setoran...</p>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <!-- FOOTER & CREDIT -->
-        <footer class="footer-bar">
-            <!-- Secret Trigger Admin (Terlihat Tipis Hanya Bagi yang Jeli) -->
+        <footer class="footer-bar-bottom">
             <button id="btn-secret-admin" class="secret-admin-btn" title="Dashboard Admin"></button>
             
-            <!-- Credit Teks -->
-            <p class="credit-text">Credit by <strong>JawirStory</strong></p>
+            <div class="walker-animation-box">
+                <span class="walker-placeholder">🏃‍♂️</span>
+            </div>
+
+            <p class="credit-text">By <strong>JawirStory</strong></p>
         </footer>
     </div>
 
-    <!-- POP-UP MODAL INPUT NOMINAL -->
     <div id="input-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <h3>Setor Tabungan</h3>
@@ -85,7 +77,6 @@
         </div>
     </div>
 
-    <!-- POP-UP MODAL LOGIN ADMIN -->
     <div id="login-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <h3>Login Admin</h3>
@@ -103,8 +94,7 @@
         </div>
     </div>
 
-    <!-- HALAMAN DASHBOARD ADMIN (TERSEMBUNYI) -->
-    <div class="main-wrapper hidden" id="admin-page">
+    <div class="main-wrapper-column hidden" id="admin-page">
         <header class="top-bar-admin">
             <div>
                 <h2>Dashboard Admin</h2>
@@ -125,6 +115,6 @@
         </main>
     </div>
 
-    <script type="module" src="app.js?v=5"></script>
+    <script type="module" src="app.js?v=6"></script>
 </body>
 </html>
